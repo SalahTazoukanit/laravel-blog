@@ -17,7 +17,12 @@ class AdminPostController extends Controller
         return view('dashboard', compact('posts'));
         
     }
-                                
+         
+    public function create()
+    {
+        return view('create');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -30,7 +35,7 @@ class AdminPostController extends Controller
             'image' => 'required',
             ]);
             Post::create($request->all());
-            return redirect()->route('posts.index')
+            return redirect()->route('dashboard')
             ->with('success', 'Post created successfully.');
     }
 
@@ -42,24 +47,40 @@ class AdminPostController extends Controller
         //
     }
 
+//function edit pur rediriger dans le formulaire
+    public function edit($id)
+  {
+    $post = Post::find($id);
+    return view('edit', compact('post'));
+  }
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+  {
+    $request->validate([
+        'title' => 'required|max:255',
+        'content' => 'required',
+        'description' => 'required',
+        'image' => 'required',
+    ]);
+    $post = Post::find($id);
+    $post->update($request->all());
+    return redirect()->route('dashboard')
+      ->with('success', 'Post updated successfully.');
+  }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('dashboard')
+        ->with('success', 'Post deleted successfully');
+        
     }
 
-    public function create()
-    {
-        return view('create');
-    }
 }

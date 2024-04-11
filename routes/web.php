@@ -14,6 +14,18 @@ Route::get('/legals', [pageController::class, 'legals'])->name('legals');
 
 Route::get('/about', [pageController::class, 'about'])->name('about');
 
+Route::get('/dashboard/create', [AdminPostController::class, 'create'])->name('posts.create');
+
+Route::post('/dashboard/create', [AdminPostController::class, 'store'])->name('posts.store');
+
+Route::delete('dashboard/posts/{post}', AdminPostController::class .'@destroy')->name('posts.destroy');
+
+Route::get('/posts/{post}/edit', AdminPostController::class .'@edit')->name('posts.edit');
+
+Route::put('/posts/{post}', AdminPostController::class .'@update')->name('posts.update');
+// deletes a post
+
+
 // Route::get('/dashboard', [pageController::class, 'dashboard'])->name('dashboard');
 
 

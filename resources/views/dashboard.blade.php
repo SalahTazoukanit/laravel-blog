@@ -4,7 +4,6 @@
             {{ __('') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -12,6 +11,9 @@
                     
                     <h1 class="size-28">MES POSTS</h1>
     <div class="flex flex-col gap-11  ">
+
+        <div><a href="{{route('posts.create')}}">ajouter</a></div>
+
     @if ($posts)
         @foreach ($posts as $post )
     
@@ -20,6 +22,17 @@
                 <div>
                     <p>{{$post->title}}</p>
                     <p>{{$post->description}}</p>
+                </div>
+                <div class="col-sm">
+                    <a href="{{ route('posts.edit', $post->id) }}"
+                        class="btn btn-primary btn-sm">Modifier</a>
+                </div>
+                <div class="col-sm">
+                    <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </div>
             </div>
         
