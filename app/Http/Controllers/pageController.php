@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class pageController extends Controller
 {
@@ -37,12 +38,12 @@ class pageController extends Controller
         ]);
     }
 
-    public function dashboard(): View
-    {
-        return view('dashboard',[
+    // public function dashboard(): View
+    // {
+    //     return view('dashboard',[
 
-            'posts' => Post::all(), 
+    //         'posts' => Post::all(),
 
-        ]);
-    }
+    //     ]);
+    // }
 }

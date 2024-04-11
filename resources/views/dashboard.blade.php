@@ -15,27 +15,28 @@
         <div><a href="{{route('posts.create')}}">ajouter</a></div>
 
     @if ($posts)
-        @foreach ($posts as $post )
-    
-            <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
-                <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
-                <div>
-                    <p>{{$post->title}}</p>
-                    <p>{{$post->description}}</p>
+        @foreach ($posts as $post )                
+            
+                <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
+                    <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
+                    <div>
+                        <p>{{$post->title}}</p>
+                        <p>{{$post->user->name}}</p>
+                        <p>{{$post->description}}</p>
+                    </div>
+                    <div class="col-sm">
+                        <a href="{{ route('posts.edit', $post->id) }}"
+                            class="btn btn-primary btn-sm">Modifier</a>
+                    </div>
+                    <div class="col-sm">
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-sm">
-                    <a href="{{ route('posts.edit', $post->id) }}"
-                        class="btn btn-primary btn-sm">Modifier</a>
-                </div>
-                <div class="col-sm">
-                    <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
-                </div>
-            </div>
-        
+
         @endforeach  
     @endif
     </div>

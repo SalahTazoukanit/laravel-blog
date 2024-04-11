@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPostController extends Controller
 {
@@ -12,8 +13,11 @@ class AdminPostController extends Controller
      */
     public function index()
     {   
+
+        $admin = Auth::user()->role;
+        dump($admin);
     
-        $posts = Post::all();
+        $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('dashboard', compact('posts'));
         
     }
@@ -34,7 +38,17 @@ class AdminPostController extends Controller
             'description' => 'required',
             'image' => 'required',
             ]);
-            Post::create($request->all());
+
+            // Post::create($request->all());
+    
+            $post = new POST ;
+            $post->title = $request->title ;
+            $post->content = $request->content ;
+            $post->description = $request->description ;
+            $post->user_id = Auth::id();
+            $post->image = $request->image ;
+            $post->save();
+
             return redirect()->route('dashboard')
             ->with('success', 'Post created successfully.');
     }

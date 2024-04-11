@@ -20,16 +20,16 @@ Route::post('/dashboard/create', [AdminPostController::class, 'store'])->name('p
 
 Route::delete('dashboard/posts/{post}', AdminPostController::class .'@destroy')->name('posts.destroy');
 
-Route::get('/posts/{post}/edit', AdminPostController::class .'@edit')->name('posts.edit');
+Route::get('dashboard/posts/{post}/edit', AdminPostController::class .'@edit')->name('posts.edit');
 
-Route::put('/posts/{post}', AdminPostController::class .'@update')->name('posts.update');
+Route::put('dashboard/posts/{post}', AdminPostController::class .'@update')->name('posts.update');
 // deletes a post
 
 
 // Route::get('/dashboard', [pageController::class, 'dashboard'])->name('dashboard');
 
 
-Route::get('/dashboard', [pageController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AdminPostController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {

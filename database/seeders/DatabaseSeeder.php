@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class ,
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        //     'password' => bcrypt('test'),
-        //     'role'=>"admin",
-        // ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => bcrypt('test'),
+            'role'=>"admin",
+        ]);
 
     }
 }
