@@ -5,6 +5,8 @@
 @if ($posts)
     @foreach ($posts as $post )
 
+        @if ($post->user)
+            
             <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
                 <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
                 <div>
@@ -13,6 +15,7 @@
                     <p>{{$post->description}}</p>
                 </div>
             </div>
+        @endif
 
     @endforeach 
 @endif

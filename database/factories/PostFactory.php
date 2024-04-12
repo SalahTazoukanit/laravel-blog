@@ -22,6 +22,7 @@ class PostFactory extends Factory
             'description'=>fake()->paragraph(),
             'image'=>fake()->imageUrl(),
             'user_id'=>fake()->randomDigit(),
+            // 'categorie_id'=>fake()->randomDigit(),
         ];
     }
 }

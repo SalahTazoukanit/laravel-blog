@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Categorie;
 
 class pageController extends Controller
 {
@@ -34,6 +35,15 @@ class pageController extends Controller
         return view('welcome',[
 
             'posts' => Post::all(), 
+
+        ]);
+    }
+
+    public function listeCat(): View
+    {
+        return view('listeCategorie',[
+
+            'categories' => Categorie::all(), 
 
         ]);
     }

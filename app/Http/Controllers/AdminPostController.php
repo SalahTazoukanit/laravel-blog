@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPostController extends Controller
@@ -37,6 +38,7 @@ class AdminPostController extends Controller
             'content' => 'required',
             'description' => 'required',
             'image' => 'required',
+            // 'categorie_id'=>'required',
             ]);
 
             // Post::create($request->all());
@@ -47,7 +49,12 @@ class AdminPostController extends Controller
             $post->description = $request->description ;
             $post->user_id = Auth::id();
             $post->image = $request->image ;
+            // $post->categorie = $request->categorie;
             $post->save();
+
+            //pour lier le post à un categorie_id ..la fonction categorie est dans la relations model Post;
+            $post->categories()->attach($request->categories);
+
 
             return redirect()->route('dashboard')
             ->with('success', 'Post created successfully.');
