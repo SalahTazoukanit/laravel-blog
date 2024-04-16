@@ -17,7 +17,7 @@ class AdminPostController extends Controller
     {   
 
         $admin = Auth::user()->role;
-        dump($admin);
+        // dump($admin);
         
         $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('dashboard', compact('posts'));
@@ -42,7 +42,6 @@ class AdminPostController extends Controller
             'content' => 'required',
             'description' => 'required',
             'image' => 'required',
-            // 'categorie_id'=>'required',
             ]);
 
             // Post::create($request->all());
@@ -53,18 +52,12 @@ class AdminPostController extends Controller
             $post->description = $request->description ;
             $post->user_id = Auth::id();
             $post->image = $request->image ;
-            // $post->categorie = $request->categorie;
+           
             $post->save();
 
             //pour lier le post à un categorie_id ..la fonction categorie est dans la relations model Post;
             $post->categories()->attach($request->categories);
             
-            // $categories = $request->categories;
-            // foreach ($categories as $categorie) {
-            //     $post->categories()->attach($request->categorie);
-            // }
-
-
             return redirect()->route('dashboard')
             ->with('success', 'Post created successfully.');
     }

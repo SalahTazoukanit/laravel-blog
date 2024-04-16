@@ -31,13 +31,15 @@
                 <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
                     <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
                     <div>
-                        <p>ID{{$post->id}} : {{$post->title}}</p>
+                        <p>{{$post->title}}</p>
                         <p>{{$post->user->name}}</p>
                         <p>{{$post->description}}</p>
                         {{-- <div class="categories">Categorie:{{$post->categories}}</div> --}}
-                        @foreach ($categories as $categorie)
-                        CATEGORIE: {{ $categorie->title }}
-                        @endforeach
+                       <p>Categorie :
+                            @foreach ($post->categories as $categories)
+                            {{ $categories->title }}
+                            @endforeach
+                        </p> 
                     </div>
                     <div class="col-sm">
                         <a href="{{ route('posts.edit', $post->id) }}"

@@ -32,7 +32,7 @@
                    
 
                     @foreach ($categories as $categorie)
-                        <input type="checkbox" name="categories[]" id="" value="">{{ $categorie->title }}</input>
+                        <input type="checkbox" name="categories[]" id="" value="{{ $categorie->id }}">{{ $categorie->title }}</input>
                     @endforeach
                 </div>
                 <br>

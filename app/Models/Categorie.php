@@ -20,7 +20,7 @@ class Categorie extends Model
 
     public function posts(){
 
-        return $this->belongToMany(Post::class);
+        return $this->belongsToMany(Post::class);
 
     }
 }

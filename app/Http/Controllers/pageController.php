@@ -48,12 +48,4 @@ class pageController extends Controller
         ]);
     }
 
-    // public function dashboard(): View
-    // {
-    //     return view('dashboard',[
-
-    //         'posts' => Post::all(),
-
-    //     ]);
-    // }
 }

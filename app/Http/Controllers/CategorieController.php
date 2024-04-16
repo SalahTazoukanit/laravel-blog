@@ -18,6 +18,9 @@ class CategorieController extends Controller
 
         Categorie::create($request->all());
 
+        // $categorie->posts()->attach($request->post);
+        // $categorie->save();
+
         return redirect()->route('dashboard')
         ->with('success', 'Post created successfully.');
     }

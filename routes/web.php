@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 
 
@@ -49,9 +50,27 @@ Route::get('dashboard/listeCategorie', [PageController::class, 'listeCat'])->nam
 
 
 // returns the form for editing a categorie
-Route::get('dashboard/categories/{post}/editCategorie', FormCategorieController::class .'@editCat')->name('categorie.edit');
+Route::get('dashboard/categories/{post}/editCategorie', CategorieController::class .'@editCat')->name('categorie.edit');
 // updates a categorie
-Route::put('dashboard/categories/{post}', FormCategorieController::class .'@updateCat')->name('categorie.update');
+Route::put('dashboard/categories/{post}', CategorieController::class .'@updateCat')->name('categorie.update');
+
+//ROUTE admin pour creer / modifier un utilisateur
+Route::middleware('auth')->group(function () {
+
+     
+
+            Route::prefix('dashboard')->group(function () {
+
+                Route::get('user',[UserController::class,'index'])->name('user.index');
+
+                Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');
+                Route::put('user/{id}/edit',[UserController::class,'update'])->name('user.update');
+
+                Route::delete('user/{id}/edit',[UserController::class,'index'])->name('user.delete');
+        });
+});
+
+
 
 
 

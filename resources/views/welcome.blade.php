@@ -13,6 +13,11 @@
                     <p>{{$post->title}}</p>
                     <p>{{$post->user->name}}</p>
                     <p>{{$post->description}}</p>
+                    <p>Categorie :
+                        @foreach ($post->categories as $categories)
+                            {{ $categories->title }}
+                        @endforeach
+                    </p>
                 </div>
             </div>
         @endif
