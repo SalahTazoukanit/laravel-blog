@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use App\Models\Categorie;
 
 
-class FormCategorieController extends Controller
+class CategorieController extends Controller
 {
     public function form(){
         return view("formCategorie");

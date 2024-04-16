@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pageController;
 use App\Http\Controllers\AdminPostController;
-use App\Http\Controllers\FormCategorieController;
+use App\Http\Controllers\CategorieController;
 
 
 Route::get('/', [pageController::class, 'welcome'])->name('welcome');
@@ -34,15 +34,15 @@ Route::get('/dashboard', [AdminPostController::class, 'index'])->middleware(['au
 
 
 //methode pour ajouter les categories dans la bdd;
-Route::get('/dashboard/formCategorie', [FormCategorieController::class, 'form'])->name('form.categorie');
+Route::get('/dashboard/formCategorie', [CategorieController::class, 'form'])->name('form.categorie');
 
-Route::post('/dashboard/formCategorie', [FormCategorieController::class, 'create'])->name('validate.categorie');
+Route::post('/dashboard/formCategorie', [CategorieController::class, 'create'])->name('validate.categorie');
 
 //pour les afficher;
-Route::get('/dashboard/listeCategorie', [FormCategorieController::class, 'showCategorie'])->name('show.categorie');
+Route::get('/dashboard/listeCategorie', [CategorieController::class, 'showCategorie'])->name('show.categorie');
 
 //pour supprimer une categorie;
-Route::delete('dashboard/listeCategories/{post}', FormCategorieController::class .'@destroyCategorie')->name('categories.destroy');
+Route::delete('dashboard/listeCategories/{post}', CategorieController::class .'@destroyCategorie')->name('categories.destroy');
 
 //pour rediriger vers listeCategorie
 Route::get('dashboard/listeCategorie', [PageController::class, 'listeCat'])->name('listeCat');

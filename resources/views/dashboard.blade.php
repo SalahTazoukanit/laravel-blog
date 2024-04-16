@@ -34,7 +34,10 @@
                         <p>ID{{$post->id}} : {{$post->title}}</p>
                         <p>{{$post->user->name}}</p>
                         <p>{{$post->description}}</p>
-                        <div class="categories">Categorie:{{$post->categories}}</div>
+                        {{-- <div class="categories">Categorie:{{$post->categories}}</div> --}}
+                        @foreach ($categories as $categorie)
+                        CATEGORIE: {{ $categorie->title }}
+                        @endforeach
                     </div>
                     <div class="col-sm">
                         <a href="{{ route('posts.edit', $post->id) }}"

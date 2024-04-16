@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPostController extends Controller
@@ -17,7 +18,7 @@ class AdminPostController extends Controller
 
         $admin = Auth::user()->role;
         dump($admin);
-    
+        
         $posts = Post::where('user_id', Auth::user()->id)->get();
         return view('dashboard', compact('posts'));
         
@@ -25,7 +26,10 @@ class AdminPostController extends Controller
          
     public function create()
     {
-        return view('create');
+        $categories = Categorie::all();
+        return view('create',[
+            'categories'=>$categories,
+        ]);
     }
 
     /**
@@ -54,6 +58,11 @@ class AdminPostController extends Controller
 
             //pour lier le post à un categorie_id ..la fonction categorie est dans la relations model Post;
             $post->categories()->attach($request->categories);
+            
+            // $categories = $request->categories;
+            // foreach ($categories as $categorie) {
+            //     $post->categories()->attach($request->categorie);
+            // }
 
 
             return redirect()->route('dashboard')
