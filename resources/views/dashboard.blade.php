@@ -11,51 +11,40 @@
                     
                 <div class="flex">
                     <h1 class="size-28">MES POSTS</h1>
-                    @if (Auth::user()->role === "admin")
-                        <a href="{{route("listeCat")}}"><h1 class="size-28">CATEGORIES</h1></a>
-                    @endif
                 </div>  
-    <div class="flex flex-col gap-11  ">
-
-        <div><a href="{{route('posts.create')}}">ajouter</a></div>
-       
-
-            @if (Auth::user()->role === "admin")
-                <a href="{{route('form.categorie')}}"><button>ajouter Categorie</button></a>
-            @endif
-        
-
-    @if ($posts)
-        @foreach ($posts as $post )                
-            
-                <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
-                    <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
-                    <div>
-                        <p>{{$post->title}}</p>
-                        <p>{{$post->user->name}}</p>
-                        <p>{{$post->description}}</p>
-                        {{-- <div class="categories">Categorie:{{$post->categories}}</div> --}}
-                       <p>Categorie :
-                            @foreach ($post->categories as $categories)
-                            {{ $categories->title }}
-                            @endforeach
-                        </p> 
+    <div class="flex flex-col gap-5  ">
+        @if ($posts)
+            @foreach ($posts as $post )                
+                
+                    <div class="containerBlog  flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
+                        <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
+                        <div>
+                            <h2>{{$post->title}}</h2>
+                            <p>{{$post->user->name}}</p>
+                            <p>{{$post->description}}</p>
+                            <p>Categorie :
+                                @foreach ($post->categories as $categories)
+                                    {{ $categories->title }}
+                                @endforeach
+                            </p> 
+                        </div>
+                        
                     </div>
-                    <div class="col-sm">
-                        <a href="{{ route('posts.edit', $post->id) }}"
-                            class="btn btn-primary btn-sm">Modifier</a>
+                    <div class="flex justify-center gap-10 ">
+                        <div class=" col-sm">
+                            <a href="{{ route('posts.edit', $post->id) }}"
+                                class="btn btn-primary btn-sm">Modifier</a>
+                        </div>
+                        <div class="col-sm">
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </div>
-                </div>
-
-        @endforeach  
-    @endif
+            @endforeach  
+        @endif
     </div>
                 </div>
             </div>

@@ -28,10 +28,10 @@ class UserController extends Controller
 
 //function edit pur rediriger dans le formulaire
     public function edit($id)
-  {
-    $user = User::find($id);
-    return view('user.edit', compact('user'));
-  }
+    {
+        $user = User::find($id);
+        return view('user.edit', compact('user'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -55,6 +55,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('user.index')
+        ->with('success', 'User deleted successfully');
     }
 }

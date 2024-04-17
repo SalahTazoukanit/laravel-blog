@@ -56,24 +56,17 @@ Route::put('dashboard/categories/{post}', CategorieController::class .'@updateCa
 
 //ROUTE admin pour creer / modifier un utilisateur
 Route::middleware('auth')->group(function () {
+    
+    Route::prefix('dashboard')->group(function () {
 
-     
+        Route::get('user',[UserController::class,'index'])->name('user.index');
 
-            Route::prefix('dashboard')->group(function () {
+        Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');
+        Route::put('user/{id}/edit',[UserController::class,'update'])->name('user.update');
 
-                Route::get('user',[UserController::class,'index'])->name('user.index');
-
-                Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');
-                Route::put('user/{id}/edit',[UserController::class,'update'])->name('user.update');
-
-                Route::delete('user/{id}/edit',[UserController::class,'index'])->name('user.delete');
-        });
+        Route::delete('user/{id}/edit',[UserController::class,'destroy'])->name('user.destroy');
+    });
 });
-
-
-
-
-
 
 
 Route::middleware('auth')->group(function () {

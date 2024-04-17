@@ -20,7 +20,13 @@
             <p>{{ $user->email }}</p>
             <div class="flex gap-3">
                 <a href="{{ route('user.edit',$user->id) }}">Modifier</a>
-                <a href="{{ route('user.edit',$user->id) }}">Supprimer</a>
+                <div class="col-sm">
+                    <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
             
