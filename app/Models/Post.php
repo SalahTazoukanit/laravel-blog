@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+// use App\Traits\GenerateUniqueSlugTrait;
+
 class Post extends Model
 {
     use HasFactory;
+
+    // use GenerateUniqueSlugTrait;
 
     protected $fillable = [
         'title',
@@ -22,7 +26,7 @@ class Post extends Model
 
     public function user(){
 
-        return $this->belongsTo(User::class);
+        return $this->BelongsTo(User::class);
 
     }
 
@@ -30,5 +34,10 @@ class Post extends Model
 
         return $this->belongsToMany(Categorie::class);
 
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'title';
     }
 }

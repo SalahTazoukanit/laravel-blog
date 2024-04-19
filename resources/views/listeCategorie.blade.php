@@ -24,17 +24,14 @@
                                     <img src="{{$categorie->image}}" class="w-80 rounded-md">
                                     <p>{{$categorie->title}}</p>
                                     <p>{{$categorie->description}}</p>
-
+                                    <div class="col-sm">
+                                        <a href="{{ route('categorie.edit', $categorie->id) }}" class="btn btn-primary btn-sm">Modifier</a>
+                                    </div> 
                                     <form action="{{ route('categories.destroy', $categorie->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
-                                    <div class="col-sm">
-                                        <a href="{{ route('categorie.edit', $categorie->id) }}"
-                                            class="btn btn-primary btn-sm">Modifier</a>
-                                    </div> 
-                                    
                                 </div>   
                               
                             @endforeach

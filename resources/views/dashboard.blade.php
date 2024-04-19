@@ -9,24 +9,39 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
-                <div class="flex">
-                    <h1 class="size-28">MES POSTS</h1>
+                <div class="">
+                    <h1 class="flex justify-center items-center"> POSTS</h1>
+
+                    <form class="flex p-5 mb-5 gap-5" method="get">
+                        <input type="checkbox" value="all"> Toutes les categories<br>
+
+                        @foreach ($categories as $categorie )
+                           <p><input name="categories[]" value="{{ $categorie->id }}" type="checkbox"> {{ $categorie->title }}</p> 
+                        @endforeach
+                        <input type="submit">
+                    </form>
+
                 </div>  
-    <div class="flex flex-col gap-5  ">
+    <div class="flex flex-col flex-wrap gap-5  ">
         @if ($posts)
             @foreach ($posts as $post )                
-                
-                    <div class="containerBlog  flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
-                        <img class="w-80 rounded-md" src="{{$post->image}}" alt="">
+                <a href="{{ route('post.show', $post) }}" >
+                    <div class="containerBlog h-60 flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
+                    
+                    @if($post->image)
+                        <img class="w-80 h-40 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
+                    @endif
                         <div>
                             <h2>{{$post->title}}</h2>
-                            <p>{{$post->user->name}}</p>
+                            <p>{{$post->user->name}}</p>  
                             <p>{{$post->description}}</p>
-                            <p>Categorie :
-                                @foreach ($post->categories as $categories)
-                                    {{ $categories->title }}
-                                @endforeach
-                            </p> 
+                        {{-- pour afficher ou pas afficher categorie  --}}
+                        @if ( $post->categories->count() !== 0)
+                            categorie:
+                        @endif
+                        @foreach ($post->categories as $categories)
+                            {{ $categories->title }}
+                        @endforeach
                         </div>
                         
                     </div>
@@ -39,10 +54,11 @@
                             <form action="{{ route('posts.destroy', $post->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                             </form>
                         </div>
                     </div>
+                </a>
             @endforeach  
         @endif
     </div>

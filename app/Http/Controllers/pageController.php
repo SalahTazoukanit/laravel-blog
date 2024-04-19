@@ -30,14 +30,31 @@ class pageController extends Controller
     }
 
 
-    public function welcome(): View
+    public function welcome(Request $request): View
     {
-        return view('welcome',[
+        
+        $categories = Categorie::all();
 
-            'posts' => Post::all(), 
+        $categoriesAll= $request->categories;
 
-        ]);
-    }
+        $query = Post::query();
+
+        if(!empty($categoriesAll)) {
+            //filtrage selon l'id de la categorie/post ;
+            $query->whereHas('categories', function ($query) use ($categoriesAll) {
+                $query->whereIn('categories.id', $categoriesAll);
+            });
+
+        }else if($categoriesAll === "all") { 
+            //posts = Post::all();
+            $query->all();
+        }
+
+        $posts = $query->get();
+
+        return view('welcome',compact('posts','categories'));                
+            
+        }
 
     public function listeCat(): View
     {

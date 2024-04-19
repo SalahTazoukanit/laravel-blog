@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Categorie;
+use App\Models\Post;
 
 class UserController extends Controller
 {
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
 //function edit pur rediriger dans le formulaire
@@ -53,10 +55,22 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $user = User::find($id);
+    public function destroy(string $id){
+    // $categories = Categorie::all();
+    // dd($posts);
+    
+    
+    $user = User::find($id);
+    $posts = Post::all()->where('user_id', $id);
+
         $user->delete();
+
+        foreach ($posts as $post) { 
+            $post->categories()->detach();
+            $post->delete();
+        }
+       
+
         return redirect()->route('user.index')
         ->with('success', 'User deleted successfully');
     }

@@ -21,7 +21,7 @@ class CategorieController extends Controller
         // $categorie->posts()->attach($request->post);
         // $categorie->save();
 
-        return redirect()->route('dashboard')
+        return redirect()->route('listeCat')
         ->with('success', 'Post created successfully.');
     }
 
@@ -37,8 +37,9 @@ class CategorieController extends Controller
 
     public function destroyCategorie($id)
     {
-        $categorie = Categorie::find($id);
-        $categorie->delete();
+        $categories = Categorie::find($id);
+        $categories->posts()->detach();
+        $categories->delete();
         return redirect()->route('listeCat')
         ->with('success', 'Categorie deleted successfully');
     }
