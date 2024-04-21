@@ -50,7 +50,7 @@ class pageController extends Controller
             $query->all();
         }
 
-        $posts = $query->get();
+        $posts = $query->paginate(3);
 
         return view('welcome',compact('posts','categories'));                
             

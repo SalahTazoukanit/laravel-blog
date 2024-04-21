@@ -26,8 +26,7 @@
                         @error('image')
                           <p class="invalid-feedback"> {{ $errors->first('image') }} </p> 
                         @enderror
-                    
-                    {{-- <textarea class=" form-control flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 w-2/5 h-20" id="body" name="image" rows="3" required></textarea> --}}
+
                 </div>
                 <div class="form-group">
                 
@@ -42,3 +41,4 @@
         </div>
     </div>
 </div>
+{{-- <script></script> --}}

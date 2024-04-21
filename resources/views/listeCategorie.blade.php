@@ -21,7 +21,9 @@
                             @foreach($categories as $categorie )
 
                                 <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
-                                    <img src="{{$categorie->image}}" class="w-80 rounded-md">
+                                   @if ($categorie->image)
+                                   <img class="w-80 h-40 ml-1.5 rounded-md" src="{{ asset('storage/' . $categorie->image) }}" alt="">
+                                   @endif
                                     <p>{{$categorie->title}}</p>
                                     <p>{{$categorie->description}}</p>
                                     <div class="col-sm">
@@ -38,7 +40,7 @@
 
                         @endif
                     </div>
-
+                    {{-- {{ $categories->links() }} --}}
                 </div>
                
             </div>

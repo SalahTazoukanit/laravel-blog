@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Categorie;
+use App\Models\Post;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Categorie>
@@ -17,8 +19,11 @@ class CategorieFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->name(),
+            'title' => fake()->word(),
+            'description'=> fake()->sentence(),
+            'image'=>fake()->imageUrl(),
             // 'post_id'=>fake()->randomDigit(),
+            // 'post_id'=>Post::all()->random()->id,
         ];
     }
 }

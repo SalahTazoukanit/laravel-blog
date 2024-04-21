@@ -16,10 +16,20 @@ class CategorieController extends Controller
 
     public function create(Request $request){
 
-        Categorie::create($request->all());
+        $request->validate([
+                    'title' => 'required|max:255',
+                    'image' => 'sometimes|image|max:5000',
+                    'description' => 'required',
+                    ]);
 
-        // $categorie->posts()->attach($request->post);
-        // $categorie->save();
+        $categorie = new Categorie;
+        $categorie->title = $request->title ;
+        $categorie->description = $request->description ;
+        $categorie->image = $request->image ;
+        
+        $categorie->save();
+
+        $this->storeImage($categorie);
 
         return redirect()->route('listeCat')
         ->with('success', 'Post created successfully.');
@@ -28,7 +38,7 @@ class CategorieController extends Controller
     
     public function showCategorie(): View
     {
-        $categories = Categorie::all();
+        $categories = Categorie::all()->paginate(2);
 
         return view('listeCategorie', compact('categories'))
         ->with('success', 'Post created successfully.');
@@ -49,11 +59,18 @@ class CategorieController extends Controller
     {
         $request->validate([
         'title' => 'required|max:255',
-        'image' => 'required',
+        'image' => 'sometimes|image|max:5000',
         'description' => 'required',
         ]);
+
         $categorie = Categorie::find($id);
+        $categorie->title = $request->title ;
+        $categorie->description = $request->description ;
         $categorie->update($request->all());
+        $categorie->image = $request->image ;
+
+        $this->storeImage($categorie);
+
         return redirect()->route('listeCat')
         ->with('success', 'Post updated successfully.');
     }
@@ -62,9 +79,22 @@ class CategorieController extends Controller
     public function editCat($id)
     {
       $categorie = Categorie::find($id);
+
+    //   $this->storeImage($categorie);
+
       return view('editCategorie', compact('categorie'));
     }
 
+
+    private function storeImage(Categorie $categorie){
+
+        if (request('image')) {
+            $categorie->update([
+                "image"=> request('image')->store('images','public'),
+            ]);
+        }
+
+    }
     
 
 }

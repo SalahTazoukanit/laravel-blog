@@ -13,11 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)->create();
 
-        $this->call([
-            PostSeeder::class ,
+        User::factory(3)->create();
+
+        User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => bcrypt('test'),
+            'role'=>"utilisateur",
         ]);
+
+        
+        
 
         User::factory()->create([
             'name' => 'Test User',
@@ -26,5 +33,17 @@ class DatabaseSeeder extends Seeder
             'role'=>"admin",
         ]);
 
+        //pour appler les deux seeders;
+        $this->call([
+            PostSeeder::class ,
+        ]);
+
+        $this->call([
+            CategorieSeeder::class ,
+        ]);
+
+        $this->call([
+            categoriepostSeeder::class ,
+        ]);
     }
 }

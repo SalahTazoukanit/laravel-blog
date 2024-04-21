@@ -22,9 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="body">Image</label><br>
-
-                    <input name="image" type="file" class="@error('image') is-invalid @enderror ">
-                    
+                    <input name="image" type="file" value="{{ $post->image }}" class="@error('image') is-invalid @enderror ">
                     @error('image')
                       <p class="invalid-feedback"> {{ $errors->first('image') }} </p> 
                     @enderror

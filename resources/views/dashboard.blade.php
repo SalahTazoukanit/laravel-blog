@@ -22,26 +22,26 @@
                     </form>
 
                 </div>  
-    <div class="flex flex-col flex-wrap gap-5  ">
+    <div class="flex flex-col flex-wrap gap-5 ">
         @if ($posts)
             @foreach ($posts as $post )                
                 <a href="{{ route('post.show', $post) }}" >
                     <div class="containerBlog h-60 flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
                     
-                    @if($post->image)
-                        <img class="w-80 h-40 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
-                    @endif
+                        @if($post->image)
+                            <img class="w-80 h-40 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
+                        @endif
                         <div>
                             <h2>{{$post->title}}</h2>
                             <p>{{$post->user->name}}</p>  
                             <p>{{$post->description}}</p>
-                        {{-- pour afficher ou pas afficher categorie  --}}
-                        @if ( $post->categories->count() !== 0)
-                            categorie:
-                        @endif
-                        @foreach ($post->categories as $categories)
-                            {{ $categories->title }}
-                        @endforeach
+                            {{-- pour afficher ou pas afficher categorie  --}}
+                            @if ( $post->categories->count() !== 0)
+                                categorie:
+                            @endif
+                            @foreach ($post->categories as $categories)
+                                {{ $categories->title }}
+                            @endforeach
                         </div>
                         
                     </div>
@@ -62,7 +62,7 @@
             @endforeach  
         @endif
     </div>
-                </div>
+            {{   $posts->WithqueryString()->links() }}                </div>
             </div>
         </div>
     </div>

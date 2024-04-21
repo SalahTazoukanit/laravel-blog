@@ -13,37 +13,38 @@
         </div>
     </form>
 
-<div class="flex flex-col gap-11  ">
-@if ($posts)
-    @foreach ($posts as $post )
+<div class="flex flex-col flex-wrap gap-5">
+    @if ($posts)
+        @foreach ($posts as $post )
 
-        <a href="{{ route('post.show', $post ) }}">
-            @if ($post->user)
-                
-                <div class="containerBlog h-60 flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
+            <a href="{{ route('post.show', $post ) }}">
+                @if ($post->user)
+                    
+                    <div class="containerBlog h-50 flex gap-9 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
 
-                    @if($post->image)
-                        <img class="w-80 h-50 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
-                    @endif
-                    <div>
-                        <p>{{$post->title}}</p>
-                        <p>{{$post->user->name}}</p>
-                        <p>{{$post->description}}</p>
-                        <p> 
-                            @if ( $post->categories->count() !== 0)
-                                categorie:
-                            @endif
-                            @foreach ($post->categories as $categories)
-                                {{ $categories->title }}
-                            @endforeach
-                        </p>
+                        @if($post->image)
+                            <img class="w-60 h-50 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
+                        @endif
+                        <div>
+                            <p>{{$post->title}}</p>
+                            <p>{{$post->user->name}}</p>
+                            <p>{{$post->description}}</p>
+                            <p> 
+                                @if ( $post->categories->count() !== 0)
+                                    categorie:
+                                @endif
+                                @foreach ($post->categories as $categories)
+                                    {{ $categories->title }}
+                                @endforeach
+                            </p>
+                        </div>
                     </div>
-                </div>
-            @endif
-        </a>
+                @endif
+            </a>
 
-    @endforeach 
-@endif
+        @endforeach 
+    @endif
+        {{ $posts->WithqueryString()->links() }}
 </div>
 
 

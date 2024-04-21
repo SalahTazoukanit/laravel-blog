@@ -37,12 +37,12 @@ class AdminPostController extends Controller
                 $query->all();
             }
             //execute la requette;
-            $posts = $query->get();
+            $posts = $query->paginate(4);
 
         }//si ce n'est pas admin (dans le dashboard je vois que mes posts) et le champs pour filtrer est vide ;
         else if(auth()->user()->role !== 'admin' && empty($categoriesAll) ) {
             //recuperer que ses propre posts ;
-            $posts = Post::where('user_id', Auth::user()->id)->get() ;
+            $posts = Post::where('user_id', Auth::user()->id)->paginate(4) ;
 
         }else if(auth()->user()->role !== 'admin' && !empty($categoriesAll) ){
             
@@ -53,7 +53,7 @@ class AdminPostController extends Controller
 
             });
             //execute la requette ;
-            $posts = $query->get();          
+            $posts = $query->paginate(4);          
             
         }
         
@@ -77,7 +77,7 @@ class AdminPostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'description' => 'required',
-            'image' => 'sometimes|image|max:5000',
+            'image' => 'nullable|image|max:5000',
         ]);
 
             $post = new POST ;
