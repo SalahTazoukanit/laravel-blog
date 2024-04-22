@@ -46,11 +46,11 @@ class pageController extends Controller
             });
 
         }else if($categoriesAll === "all") { 
-            //posts = Post::all();
-            $query->all();
+            // $query->all();
+            $query->paginate(5);
         }
 
-        $posts = $query->paginate(3);
+        $posts = $query->paginate(5);
 
         return view('welcome',compact('posts','categories'));                
             

@@ -4,7 +4,7 @@
 <div class="container mt-5 mb-5 h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
-            <div class="flex gap-20 items-center mb-5">
+            <div class="flex justify-center gap-20 items-center mb-5">
                 <div class="flex text-2xl">Modifier le post</div>
                 <a class="text-l" href="{{ route("dashboard") }}">Revenir au dashboard</a>
             </div>

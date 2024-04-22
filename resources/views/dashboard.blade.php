@@ -21,7 +21,8 @@
                                 <a href="{{ route('post.show', $post) }}" >
                                     <div class="containerBlog w-200 h-80 flex gap-10 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
                                         @if($post->image)
-                                            <img class="w-80 h-40 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
+                                            <img class="w-60 h-50 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
+                                            @else <img src="" class="w-60 h-50 ml-1.5 rounded-md" alt="">
                                         @endif
                                         <div class="h-30 max-w-100 ">
                                             <h2>{{$post->title}}</h2>

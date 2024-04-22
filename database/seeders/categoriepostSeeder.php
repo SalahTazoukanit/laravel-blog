@@ -14,6 +14,11 @@ class categoriepostSeeder extends Seeder
      */
     public function run(): void
     {
-        categoriepost::factory(5)->create();
+
+        $categories = Categorie::factory(5)->create();
+
+            Post::factory()->create()->each(function($posts) use ($categories) {
+                $posts->categories()->attach($categories->random());
+        });
     }
 }

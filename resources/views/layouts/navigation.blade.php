@@ -17,18 +17,18 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('create')">
+                    <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                         {{ __('Ajouter post') }}
                     </x-nav-link>
                 </div>
                 @if (Auth::user()->role === "admin") 
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('listeCat')" :active="request()->routeIs('create')">
+                        <x-nav-link :href="route('listeCat')" :active="request()->routeIs('listeCat')">
                             {{ __('Categories') }}
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('create')">
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                             {{ __('Administration') }}
                         </x-nav-link>
                     </div>

@@ -1,11 +1,18 @@
+
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+<div class="flex items-center">
+    <p class="text-3xl text-red-800 m-5 ">Blog</p>
+</div>
 @if ($post)
-            
-    <div class="containerBlog  flex gap-4 items-center shadow-xl text-black bg-slate-100 rounded-md shadow-current">
+    <p class="ml-5 text-6xl font-mono">{{$post->title}}</p>
+@endif 
+<div class="flex flex-col items-center justify-center gap-5">
+    @if ($post)
+        
         @if($post->image)
-            <img class="w-80 h-50 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
-        @endif                
-        <div>
-            <p>{{$post->title}}</p>
+            <img class="imgPost w-80" src="{{ asset('storage/' . $post->image) }}" alt="">
+        @endif  
+        <div class="flex flex-col">
             <p>{{$post->user->name}}</p>
             <p>{{$post->description}}</p>
             <p> 
@@ -17,6 +24,5 @@
                 @endforeach
             </p>
         </div>
-    </div>
-
-@endif
+    @endif
+</div>

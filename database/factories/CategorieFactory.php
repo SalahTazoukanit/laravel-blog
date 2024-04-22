@@ -22,8 +22,6 @@ class CategorieFactory extends Factory
             'title' => fake()->word(),
             'description'=> fake()->sentence(),
             'image'=>fake()->imageUrl(),
-            // 'post_id'=>fake()->randomDigit(),
-            // 'post_id'=>Post::all()->random()->id,
         ];
     }
 }

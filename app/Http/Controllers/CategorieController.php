@@ -80,8 +80,6 @@ class CategorieController extends Controller
     {
       $categorie = Categorie::find($id);
 
-    //   $this->storeImage($categorie);
-
       return view('editCategorie', compact('categorie'));
     }
 

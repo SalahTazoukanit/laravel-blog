@@ -1,5 +1,5 @@
 @include("layouts.front.head")
-@include("layouts.front.header")
+@include("layouts.front.header")    
 
 
 <form class="flex p-5" method="get">
@@ -23,7 +23,7 @@
 
                         @if($post->image)
                             <img class="w-60 h-50 ml-1.5 rounded-md" src="{{ asset('storage/' . $post->image) }}" alt="">
-                        @else <img src="" class="w-60 h-50 ml-1.5 rounded-md" alt="">
+                            @else <img  class="w-60 h-50 ml-1.5 rounded-md" alt="">
                         @endif
                         <div class="max-h-30 overflow-y-auto">
                             <p>{{$post->title}}</p>
