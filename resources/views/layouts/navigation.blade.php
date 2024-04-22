@@ -5,9 +5,13 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
+                    {{-- logo admin ou utilisateur --}}
+                    <div class="">
+                        @if (auth()->user()->role === 'admin') 
+                            <img class="w-12 rounded-full ml-50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF9Fq8ooNT2dCf8JOuLFnhT81Co1dgbsuBypHTyS7Hrg&s" alt="">
+                            @else <img class="w-12 rounded-full ml-50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuGFjsxZCvbMuKnsJHFywAKXzJh6SsPWVsifY_z36wVT9p38WQ3IQPDPDjhFPDyxv6YQY&usqp=CAU" alt=""> 
+                        @endif
+                    </div>
                 </div>
 
                 <!-- Navigation Links -->
@@ -32,8 +36,9 @@
                             {{ __('Administration') }}
                         </x-nav-link>
                     </div>
+                    
                 @endif
-                
+               
             </div>
 
             <!-- Settings Dropdown -->
@@ -79,6 +84,7 @@
                     </svg>
                 </button>
             </div>
+            
         </div>
     </div>
 

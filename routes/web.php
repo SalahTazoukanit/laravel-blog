@@ -8,29 +8,31 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Middleware\isAdmin;
 
+Route::prefix('/')->group(function () {
 
-Route::get('/', [pageController::class, 'welcome'])->name('welcome');
-Route::get('/welcome', [pageController::class, 'welcome'])->name('welcome');
+    Route::get('/', [pageController::class, 'welcome'])->name('welcome');
+
+    Route::get('/legals', [pageController::class, 'legals'])->name('legals');
+
+    Route::get('/about', [pageController::class, 'about'])->name('about');
+
+});
 
 
-Route::get('/legals', [pageController::class, 'legals'])->name('legals');
 
-Route::get('/about', [pageController::class, 'about'])->name('about');
+Route::prefix('/dashboard')->group(function(){
+    
+    Route::get('/', [AdminPostController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+    Route::get('/create', [AdminPostController::class, 'create'])->name('posts.create');
+    Route::post('/create', [AdminPostController::class, 'store'])->name('posts.store');
 
-Route::get('/dashboard/create', [AdminPostController::class, 'create'])->name('posts.create');
-
-Route::post('/dashboard/create', [AdminPostController::class, 'store'])->name('posts.store');
-
-Route::delete('dashboard/posts/{post}', AdminPostController::class .'@destroy')->name('posts.destroy');
-
-Route::get('dashboard/posts/{post}/edit', AdminPostController::class .'@edit')->name('posts.edit');
-
-Route::put('dashboard/posts/{post}', AdminPostController::class .'@update')->name('posts.update');
-// deletes a post
-
-Route::get('/dashboard', [AdminPostController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
+    Route::get('/posts/{post}/edit', AdminPostController::class .'@edit')->name('posts.edit');
+    Route::put('/posts/{post}', AdminPostController::class .'@update')->name('posts.update');
+  
+    Route::delete('/posts/{post}', AdminPostController::class .'@destroy')->name('posts.destroy');
+    
+});
 
 Route::group(['middleware'=> isAdmin::class] , function () {
 
@@ -50,7 +52,6 @@ Route::group(['middleware'=> isAdmin::class] , function () {
         //pour rediriger vers listeCategorie
         Route::get('/listeCategorie', [PageController::class, 'listeCat'])->name('listeCat');
 
-
         // returns the form for editing a categorie
         Route::get('/categories/{post}/editCategorie', CategorieController::class .'@editCat')->name('categorie.edit');
         // updates a categorie
@@ -68,8 +69,9 @@ Route::group(['middleware'=> isAdmin::class] , function () {
 
         Route::get('user/{id}/edit',[UserController::class,'edit'])->name('user.edit');
         Route::put('user/{id}/edit',[UserController::class,'update'])->name('user.update');
-
+        
         Route::delete('user/{id}/edit',[UserController::class,'destroy'])->name('user.destroy');
+
     });
 
 });

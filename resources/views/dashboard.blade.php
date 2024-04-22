@@ -12,7 +12,7 @@
                             @foreach ($categories as $categorie )
                             <p><input name="categories[]" value="{{ $categorie->id }}" type="checkbox"> {{ $categorie->title }}</p> 
                             @endforeach
-                            <input type="submit">
+                            <input class="bg-red rounded border-b-4 border-slate-700 hover:opacity-50" type="submit">
                         </form>
                     </div>  
                     <div class="flex flex-col flex-wrap gap-5 ">

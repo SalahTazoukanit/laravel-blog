@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .imgPost{
-    width: 200px;
-} */
+.dark-mode{
+    background-color: black;
+    color: white;
+  }
+  .dark-mode-text{
+    color: white;
+  }

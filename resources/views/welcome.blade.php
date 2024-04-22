@@ -1,14 +1,15 @@
 @include("layouts.front.head")
-@include("layouts.front.header")    
 
+@include("layouts.front.header")   
+
+<p class="text-end"><button class="w-32 border-solid rounded-md border-2 border-red-700" id="changeMode">Changer Mode</button></p>
 
 <form class="flex p-5" method="get">
     <div class="flex gap-11 flex-wrap">
-        <label for=""><input type="checkbox" value="all"> Toutes les categories</label>
+        <p><input type="checkbox" value="all"> Toutes les categories</p>
         @foreach ($categories as $categorie )
             <p> <input name="categories[]" value="{{ $categorie->id }}" type="checkbox"> {{ $categorie->title }} </p> 
         @endforeach
-        
         <input class="bg-red rounded border-b-4 border-slate-700 text-red-700 hover:opacity-50" value="Envoyer" type="submit">
     </div>
 </form>
@@ -49,3 +50,23 @@
 
 
 @include("layouts.front.footer")
+
+<script>
+
+    const changeMode = document.querySelector("#changeMode");
+    
+
+    changeMode.addEventListener("click", ()=>{
+
+        let p = document.querySelectorAll("p");
+        let body = document.body;
+
+        body.classList.toggle("dark-mode");
+
+        p.forEach(paragraph => {
+            paragraph.classList.toggle("dark-mode-text");
+        });
+
+    });
+
+</script>

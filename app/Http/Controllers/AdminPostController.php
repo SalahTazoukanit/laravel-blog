@@ -149,6 +149,8 @@ class AdminPostController extends Controller
 
         $post = Post::find($id);
         $post->categories()->detach();
+        $path = public_path('storage/'. $post->image);
+        unlink($path);
         $post->delete();
         
         return redirect()->route('dashboard')

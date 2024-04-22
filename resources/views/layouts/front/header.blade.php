@@ -13,14 +13,14 @@
                         href="{{ url('/dashboard') }}"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
-                        Dashboard
+                        <p>Dashboard</p>
                     </a>
                 @else
                     <a
                         href="{{ route('login') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        class=" rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
-                        Log in
+                       <p>Log in</p> 
                     </a>
 
                     @if (Route::has('register'))
@@ -28,18 +28,18 @@
                             href="{{ route('register') }}"
                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
                         >
-                            Register
+                            <p>Register</p>
                         </a>
                     @endif
                     <a href="legals" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
-                    >Legals
+                    ><p>Legals</p>
                     </a>
                     <a href="about" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]  dark:hover:text-white/80 dark:focus-visible:ring-white"
-                    >About</a>
+                    ><p>About</p></a>
                 @endauth
                 
             </nav>
         @endif  
-        <h1 class="text-6xl text-red-800">Blog</h1>
+        <p class="text-6xl text-red-800">Blog</p>
     </header>
 

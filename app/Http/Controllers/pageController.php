@@ -46,13 +46,13 @@ class pageController extends Controller
             });
 
         }else if($categoriesAll === "all") { 
-            // $query->all();
-            $query->paginate(5);
+            
+            $query->all();
         }
 
         $posts = $query->paginate(5);
 
-        return view('welcome',compact('posts','categories'));                
+        return view('welcome',compact('posts','categories')); 
             
         }
 
@@ -60,7 +60,7 @@ class pageController extends Controller
     {
         return view('listeCategorie',[
 
-            'categories' => Categorie::all(), 
+            'categories' => Categorie::all(),
 
         ]);
     }
